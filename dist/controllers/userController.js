@@ -20,9 +20,12 @@ const registerUser = (req, res) => __awaiter(void 0, void 0, void 0, function* (
         const { username, password, roles } = req.body;
         const newUser = new userModel_1.default({ username, password, roles });
         yield newUser.save();
+        const token = jsonwebtoken_1.default.sign({ username }, "your-secret-key", {
+            expiresIn: "1h",
+        });
         res
             .status(201)
-            .json({ message: "Successfully register a user", data: newUser });
+            .json({ message: "Successfully register a user", data: newUser, token });
     }
     catch (error) {
         console.error(error);

@@ -10,9 +10,12 @@ export const registerUser = async (
     const { username, password, roles } = req.body;
     const newUser = new User({ username, password, roles });
     await newUser.save();
+    const token = jwt.sign({ username }, "your-secret-key", {
+      expiresIn: "1h",
+    });
     res
       .status(201)
-      .json({ message: "Successfully register a user", data: newUser });
+      .json({ message: "Successfully register a user", data: newUser, token });
   } catch (error) {
     console.error(error);
     res.status(500).send("Internal Server Error");
