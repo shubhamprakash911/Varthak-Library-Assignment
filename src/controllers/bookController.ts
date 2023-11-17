@@ -32,8 +32,7 @@ export const viewBooksByUser = async (
   res: Response
 ): Promise<void> => {
   try {
-    const { user } = req.body;
-    const books = await Book.find({ createdBy: user });
+    const books = await Book.find({ user: req.body.user._id });
     res.status(200).json(books);
   } catch (error) {
     console.error(error);

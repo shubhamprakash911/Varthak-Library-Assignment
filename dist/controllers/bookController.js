@@ -40,8 +40,7 @@ const viewBooks = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
 exports.viewBooks = viewBooks;
 const viewBooksByUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const { user } = req.body;
-        const books = yield bookModel_1.default.find({ createdBy: user });
+        const books = yield bookModel_1.default.find({ user: req.body.user._id });
         res.status(200).json(books);
     }
     catch (error) {

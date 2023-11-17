@@ -10,3 +10,8 @@ const PORT = process.env.PORT || 3000;
 app_1.default.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });
+// {
+//   "username":"shubhamkumar",
+//   "password":"123",
+//   "roles":["CREATOR","VIEWER"]
+// }
