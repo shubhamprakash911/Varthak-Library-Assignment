@@ -8,7 +8,7 @@ export const createBook = async (
 ): Promise<void> => {
   try {
     const { title } = req.body;
-    const newBook = new Book({ title });
+    const newBook = new Book({ title, user: req.body.user._id });
     await newBook.save();
     res.status(201).json(newBook);
   } catch (error) {

@@ -17,7 +17,7 @@ const bookModel_1 = __importDefault(require("../models/bookModel"));
 const createBook = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { title } = req.body;
-        const newBook = new bookModel_1.default({ title });
+        const newBook = new bookModel_1.default({ title, user: req.body.user._id });
         yield newBook.save();
         res.status(201).json(newBook);
     }
